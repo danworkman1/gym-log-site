@@ -1,7 +1,7 @@
 {
 	"compatibility_date": "2026-05-05",
 	"compatibility_flags": ["global_fetch_strictly_public"],
-	"name": "gym-log-app-com",
+	"name": "gym-log-site",
 	"main": "@astrojs/cloudflare/entrypoints/server",
 	"assets": {
 		"directory": "./dist",
@@ -13,6 +13,10 @@
 	"vars": {
     	"TURNSTILE_SITE_KEY": "0x4AAAAAADM5-xmYTywSG3kQ",
 		"CONTACT_TO_EMAIL": "support@gym-log-app.com",
-		"CONTACT_FROM_EMAIL": "Gym Log Contact <support@htmltopdfconverter.com.au>"
-  	}
+		"CONTACT_FROM_EMAIL": "Gym Log Contact <support@gym-log-app.com>"
+  	},
+	"routes": [
+		{ "pattern": "gym-log-app.com", "custom_domain": true },
+		{ "pattern": "www.gym-log-app.com", "custom_domain": true }
+	]
 }
