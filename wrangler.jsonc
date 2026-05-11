@@ -1,0 +1,18 @@
+{
+	"compatibility_date": "2026-05-05",
+	"compatibility_flags": ["global_fetch_strictly_public"],
+	"name": "gym-log-app-com",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"vars": {
+    	"TURNSTILE_SITE_KEY": "0x4AAAAAADM5-xmYTywSG3kQ",
+		"CONTACT_TO_EMAIL": "",
+		"CONTACT_FROM_EMAIL": ""
+  	}
+}

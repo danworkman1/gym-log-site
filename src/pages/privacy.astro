@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Privacy Policy">
+	<header class="page-header">
+		<h1>Privacy Policy</h1>
+		<p class="last-updated">Last Updated: {new Date().toLocaleDateString()}</p>
+	</header>
+
+	<div class="content-wrapper">
+		<section class="policy-section">
+			<h2>Introduction</h2>
+			<div class="divider"></div>
+			<p>Gym Log ("we," "our," or "us") respects your privacy. This Privacy Policy explains how we handle your data when you use the Gym Log mobile application. We are committed to protecting your personal information and your right to privacy.</p>
+		</section>
+
+		<section class="policy-section">
+			<h2>Information We Collect</h2>
+			<div class="divider"></div>
+			<div class="info-box">
+				<h3>Health Data</h3>
+				<p>Gym Log integrates with Apple HealthKit. We read your health data (such as body weight) to display it within the app and write workout data (such as strength training sessions) to Apple Health. <strong>This data is stored locally on your device and within your personal iCloud/Health account. We do not transmit this data to our own servers.</strong></p>
+			</div>
+			<div class="info-box">
+				<h3>Personal Identifiers</h3>
+				<p>If you choose to create an account, we may collect your email address for authentication purposes via our backend provider (Supabase). This is used solely for app functionality and account management.</p>
+			</div>
+		</section>
+
+		<section class="policy-section">
+			<h2>How We Use Your Information</h2>
+			<div class="divider"></div>
+			<p>We use the collected information to:</p>
+			<ul class="policy-list">
+				<li>Provide and maintain the app's functionality.</li>
+				<li>Sync your workouts with Apple Health.</li>
+				<li>Allow you to track your progress over time.</li>
+			</ul>
+		</section>
+
+		<section class="policy-section">
+			<h2>Data Sharing</h2>
+			<div class="divider"></div>
+			<p>We do not sell, trade, or otherwise transfer your personal or health data to outside parties. Your health data remains within the Apple Health ecosystem and your own private storage.</p>
+		</section>
+
+		<section class="policy-section">
+			<h2>Your Consent</h2>
+			<div class="divider"></div>
+			<p>By using Gym Log, you consent to our privacy policy. You can revoke HealthKit permissions at any time through the iOS Settings app.</p>
+		</section>
+
+		<section class="policy-section">
+			<h2>Contact Us</h2>
+			<div class="divider"></div>
+			<p>If you have any questions regarding this privacy policy, you may contact us via our <a href="/support" class="link">Support page</a> or <a href="/contact" class="link">Contact form</a>.</p>
+		</section>
+	</div>
+</Layout>
+
+<style>
+	.page-header {
+		text-align: center;
+		margin-bottom: 5rem;
+	}
+
+	.last-updated {
+		font-size: 0.9rem;
+		color: var(--text-muted);
+		font-style: italic;
+	}
+
+	.content-wrapper {
+		max-width: 920px;
+		margin: 0 auto;
+	}
+
+	.policy-section {
+		margin-bottom: 4rem;
+	}
+
+	.divider {
+		height: 3px;
+		width: 30px;
+		background: var(--primary);
+		margin: 0.75rem 0 1.5rem;
+		border-radius: 2px;
+	}
+
+	.policy-section h2 {
+		font-size: 1.75rem;
+		margin-bottom: 0;
+	}
+
+	.info-box {
+		background: var(--surface);
+		padding: 2rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--border);
+		margin-bottom: 1.5rem;
+	}
+
+	.info-box h3 {
+		font-size: 1.1rem;
+		color: var(--primary);
+		margin-bottom: 0.75rem;
+	}
+
+	.policy-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.policy-list li {
+		position: relative;
+		padding-left: 1.5rem;
+		margin-bottom: 1rem;
+		color: var(--text-muted);
+	}
+
+	.policy-list li::before {
+		content: "•";
+		position: absolute;
+		left: 0;
+		color: var(--primary);
+		font-weight: bold;
+	}
+
+	.link {
+		color: var(--primary);
+		text-decoration: none;
+		border-bottom: 1px solid transparent;
+		transition: border-color 0.2s;
+	}
+
+	.link:hover {
+		border-color: var(--primary);
+	}
+</style>

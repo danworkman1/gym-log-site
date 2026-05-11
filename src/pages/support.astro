@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const success = Astro.url.searchParams.get('success');
+---
+
+<Layout title="Support">
+	<header class="page-header">
+		<h1>Support</h1>
+		<p>Need help with Gym Log? We're here to assist you.</p>
+	</header>
+
+	{success && (
+		<div class="success-message">
+			<span class="icon">✓</span>
+			<p>Message sent successfully! We'll get back to you soon.</p>
+		</div>
+	)}
+
+	<section class="faq-section">
+		<div class="section-header">
+			<h2>Frequently Asked Questions</h2>
+			<div class="divider"></div>
+		</div>
+		
+		<div class="faq-grid">
+			<div class="faq-card">
+				<h3>How do I sync with Apple Health?</h3>
+				<p>Gym Log will ask for permission when you first open the app. You can also manage these permissions in the iOS Settings app under <strong>Privacy & Security > Health > Gym Log</strong>.</p>
+			</div>
+
+			<div class="faq-card">
+				<h3>Is my data backed up?</h3>
+				<p>Your workout data is stored in your personal iCloud account and Apple Health. If you create a Gym Log account, your workout templates and history are also securely synced with our database.</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="contact-cta">
+		<div class="cta-content">
+			<h2>Still need help?</h2>
+			<p>Can't find what you're looking for? Feel free to reach out to us directly.</p>
+			<a href="/contact" class="btn">Send us a Message</a>
+		</div>
+	</section>
+</Layout>
+
+<style>
+	.page-header {
+		text-align: center;
+		margin-bottom: 4rem;
+	}
+
+	.success-message {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		background-color: #ffffff;
+		color: var(--success);
+		padding: 1.25rem;
+		border-radius: 0.5rem;
+		margin-bottom: 3rem;
+		border: 1px solid rgba(22, 163, 74, 0.22);
+	}
+
+	.success-message .icon {
+		font-size: 1.25rem;
+		font-weight: bold;
+	}
+
+	.success-message p {
+		margin-bottom: 0;
+		color: var(--success);
+	}
+
+	.section-header {
+		margin-bottom: 2.5rem;
+	}
+
+	.divider {
+		height: 4px;
+		width: 40px;
+		background: var(--primary);
+		margin-top: 0.5rem;
+		border-radius: 2px;
+	}
+
+	.faq-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+		margin-bottom: 4rem;
+	}
+
+	.faq-card {
+		background: var(--surface);
+		padding: 2rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--border);
+	}
+
+	.faq-card h3 {
+		color: var(--primary);
+		font-size: 1.125rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.faq-card p {
+		margin-bottom: 0;
+		font-size: 0.95rem;
+	}
+
+	.contact-cta {
+		padding: 3rem;
+		border-radius: 0.5rem;
+		text-align: center;
+		border: 1px solid var(--border);
+	}
+
+	.cta-content h2 {
+		margin-bottom: 0.75rem;
+	}
+
+	.cta-content p {
+		margin-bottom: 2rem;
+	}
+</style>
