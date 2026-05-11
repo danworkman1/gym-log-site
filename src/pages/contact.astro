@@ -1,7 +1,9 @@
 ---
+import { env } from 'cloudflare:workers';
 import Layout from '../layouts/Layout.astro';
 
-const turnstileSiteKey = (Astro.locals as any).runtime?.env?.TURNSTILE_SITE_KEY;
+// Fallback from wrangler.jsonc if env is not populated
+const { TURNSTILE_SITE_KEY: turnstileSiteKey  } = env
 ---
 
 <Layout title="Contact">
@@ -61,6 +63,59 @@ const turnstileSiteKey = (Astro.locals as any).runtime?.env?.TURNSTILE_SITE_KEY;
 			</div>
 		</aside>
 	</div>
+
+	{turnstileSiteKey && (
+		<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+	)}
+
+	<script>
+		const form = document.querySelector<HTMLFormElement>('#contact-form');
+		const status = document.querySelector<HTMLParagraphElement>('#contact-form-status');
+		const submitBtn = document.querySelector<HTMLButtonElement>('#submit-btn');
+
+		form?.addEventListener('submit', async (e) => {
+			e.preventDefault();
+			
+			if (!status || !submitBtn) {
+				form.submit();
+				return;
+			}
+
+			status.textContent = 'Sending message...';
+			status.style.color = 'var(--text-muted)';
+			submitBtn.disabled = true;
+
+			try {
+				const formData = new FormData(form);
+				const response = await fetch(form.action, {
+					method: 'POST',
+					headers: {
+						'Accept': 'application/json',
+						'X-Requested-With': 'fetch'
+					},
+					body: formData
+				});
+
+				const result = await response.json() as { message: string };
+
+				status.textContent = result.message;
+				
+				if (response.ok) {
+					status.style.color = 'var(--success)';
+					form.reset();
+				} else {
+					status.style.color = '#ef4444';
+				}
+			} catch (err) {
+				status.textContent = 'Something went wrong. Please try again.';
+				status.style.color = '#ef4444';
+			} finally {
+				submitBtn.disabled = false;
+				// @ts-ignore
+				window.turnstile?.reset();
+			}
+		});
+	</script>
 </Layout>
 
 <style>
@@ -172,56 +227,3 @@ const turnstileSiteKey = (Astro.locals as any).runtime?.env?.TURNSTILE_SITE_KEY;
 		color: var(--primary-dark);
 	}
 </style>
-
-{turnstileSiteKey && (
-	<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-)}
-
-<script>
-	const form = document.querySelector<HTMLFormElement>('#contact-form');
-	const status = document.querySelector<HTMLParagraphElement>('#contact-form-status');
-	const submitBtn = document.querySelector<HTMLButtonElement>('#submit-btn');
-
-	form?.addEventListener('submit', async (e) => {
-		e.preventDefault();
-		
-		if (!status || !submitBtn) {
-			form.submit();
-			return;
-		}
-
-		status.textContent = 'Sending message...';
-		status.style.color = 'var(--text-muted)';
-		submitBtn.disabled = true;
-
-		try {
-			const formData = new FormData(form);
-			const response = await fetch(form.action, {
-				method: 'POST',
-				headers: {
-					'Accept': 'application/json',
-					'X-Requested-With': 'fetch'
-				},
-				body: formData
-			});
-
-			const result = await response.json() as { message: string };
-
-			status.textContent = result.message;
-			
-			if (response.ok) {
-				status.style.color = 'var(--success)';
-				form.reset();
-			} else {
-				status.style.color = '#ef4444';
-			}
-		} catch (err) {
-			status.textContent = 'Something went wrong. Please try again.';
-			status.style.color = '#ef4444';
-		} finally {
-			submitBtn.disabled = false;
-			// @ts-ignore
-			window.turnstile?.reset();
-		}
-	});
-</script>

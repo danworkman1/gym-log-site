@@ -1,11 +1,7 @@
+import { env as cfEnv } from 'cloudflare:workers';
 import type { APIRoute } from 'astro';
 
-type ContactEnv = {
-  TURNSTILE_SECRET_KEY: string;
-  RESEND_API_KEY: string;
-  CONTACT_TO_EMAIL: string;
-  CONTACT_FROM_EMAIL: string;
-};
+type ContactEnv = Cloudflare.Env;
 
 const TURNSTILE_VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 const RESEND_EMAIL_URL = 'https://api.resend.com/emails';
@@ -54,8 +50,8 @@ const escapeHtml = (value: string) =>
     return replacements[character];
   });
 
-export const POST: APIRoute = async ({ request, locals, redirect }) => {
-  const env = (locals as any).runtime?.env as ContactEnv;
+export const POST: APIRoute = async ({ request, redirect }) => {
+  const env = cfEnv as unknown as ContactEnv;
   const acceptsJson = request.headers.get('accept')?.includes('application/json') ||
                       request.headers.get('x-requested-with') === 'fetch';
 
@@ -80,6 +76,7 @@ export const POST: APIRoute = async ({ request, locals, redirect }) => {
     }
 
     if (!turnstileToken) {
+      console.warn('Missing Turnstile token in form submission');
       return fail('Please complete the verification challenge.');
     }
 
