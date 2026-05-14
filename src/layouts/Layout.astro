@@ -75,11 +75,21 @@ const { title, description = "Gym Log - Simple, effective workout tracking." } =
 			}
 
 			.logo {
-				font-size: 1.25rem;
-				font-weight: 800;
-				color: var(--primary-dark) !important;
-				letter-spacing: -0.025em;
+				display: flex;
+				align-items: center;
 				text-decoration: none;
+			}
+
+			.logo img {
+				height: 2.25rem;
+				width: auto;
+				display: block;
+			}
+
+			@media (min-width: 640px) {
+				.logo img {
+					height: 3rem;
+				}
 			}
 
 			.nav-links {
@@ -167,7 +177,9 @@ const { title, description = "Gym Log - Simple, effective workout tracking." } =
 	<body>
 		<header>
 			<nav>
-				<a href="/" class="logo">Gym Log</a>
+				<a href="/" class="logo">
+					<img src="/logo.png" alt="Gym Log" />
+				</a>
 				<div class="nav-links">
 					<a href="/support">Support</a>
 					<a href="/privacy">Privacy</a>

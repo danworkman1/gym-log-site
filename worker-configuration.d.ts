@@ -6,7 +6,7 @@ declare namespace Cloudflare {
 		ASSETS: Fetcher;
 		TURNSTILE_SITE_KEY: "0x4AAAAAADM5-xmYTywSG3kQ";
 		CONTACT_TO_EMAIL: "support@gym-log-app.com";
-		CONTACT_FROM_EMAIL: "Gym Log Contact <support@gym-log-app.com>";
+		CONTACT_FROM_EMAIL: "Gym Log Contact <support@htmltopdfconverter.com.au>";
 	}
 }
 interface Env extends Cloudflare.Env {}
