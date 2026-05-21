@@ -5,6 +5,7 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Home" description="The simplest way to log your workouts and stay consistent.">
 	<section class="hero">
 		<div class="hero-content">
+			<img src="/logo.png" alt="" class="hero-logo" width="180" height="180" />
 			<h1 class="gradient-text">Gym Log</h1>
 			<p class="subtitle">Focus on your gains, not your screen.</p>
 			<p class="description">Gym Log is a clean, minimal workout tracker built for lifters who want to spend more time lifting and less time tapping.</p>
@@ -53,6 +54,22 @@ import Layout from '../layouts/Layout.astro';
 		z-index: 10;
 		max-width: 820px;
 		margin: 0 auto;
+	}
+
+	.hero-logo {
+		display: block;
+		width: 160px;
+		height: 160px;
+		margin: 0 auto 1.5rem;
+		border-radius: 28px;
+		box-shadow: 0 20px 40px -12px rgba(180, 83, 9, 0.35), 0 8px 16px -8px rgba(180, 83, 9, 0.2);
+	}
+
+	@media (min-width: 640px) {
+		.hero-logo {
+			width: 180px;
+			height: 180px;
+		}
 	}
 
 	.gradient-text {
