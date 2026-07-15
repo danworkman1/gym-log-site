@@ -117,6 +117,17 @@ const { title, description = "Gym Log - Simple, effective workout tracking." } =
 				background-color: var(--surface);
 			}
 
+			footer a {
+				color: var(--primary-dark);
+				text-decoration: none;
+				border-bottom: 1px solid transparent;
+				transition: border-color 0.2s;
+			}
+
+			footer a:hover {
+				border-color: var(--primary-dark);
+			}
+
 			h1, h2, h3 {
 				color: var(--primary-dark);
 				font-weight: 800;
@@ -179,7 +190,7 @@ const { title, description = "Gym Log - Simple, effective workout tracking." } =
 			<slot />
 		</main>
 		<footer>
-			&copy; {new Date().getFullYear()} Gym Log. Built for lifters, by lifters.
+			&copy; {new Date().getFullYear()} Gym Log. Built for lifters, by lifters. &middot; Made by <a href="https://danielworkman.dev">Daniel Workman</a>
 		</footer>
 	</body>
 </html>
